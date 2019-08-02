@@ -22,7 +22,7 @@ def unify_name(name):
     #姓名统一小写
     name=str(name).lower()
     #去掉，和@后面的内容
-    name=name.replace(',',',').split('@')[0]
+    name=name.replace(',',' ').split('@')[0]
     #别名转换
     if name in  aliases.keys():
        return  persons[aliases[name]]
@@ -35,7 +35,7 @@ def show_graph(graph,layout='spring_layout'):
     else:
         positions=nx.spring_layout(graph)
     #设置网络图中的节点大小，大小与pagerank值相关，因为pagerank值很小所以需要*20000
-    nodesize=[x['pagerank']*200000 for v,x in graph.nodes(data=True)]
+    nodesize=[x['pagerank']*20000 for v,x in graph.nodes(data=True)]
     #设置网络图中边的长度
     edgesize=[np.sqrt(e[2]['weight']) for e in graph.edges(data=True)]
     #绘制节点
